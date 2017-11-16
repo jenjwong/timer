@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import Input from "./Input";
 import serializeForm from "form-serialize";
+import TimeDisplay from "./TimeDisplay";
 
 class App extends Component {
   handleSubmit = e => {
@@ -21,6 +22,7 @@ class App extends Component {
           handleSubmit={this.handleSubmit}
           name="endTime"
         />
+        <TimeDisplay time="2" />
       </div>
     );
   }

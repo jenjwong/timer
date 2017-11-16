@@ -3,10 +3,6 @@
 import React, { Component } from "react";
 
 class Input extends Component {
-  state = {
-    isValid: false
-  };
-
   render() {
     let { val = "", name = "test", label = "", handleSubmit } = this.props;
 
