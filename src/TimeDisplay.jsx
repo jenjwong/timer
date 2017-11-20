@@ -12,7 +12,7 @@ class TimeDisplay extends Component {
           return { ...prevState, time: prevState.time - 1 };
         } else {
           clearTimeout(this.intervalRef);
-          return prevState;
+          return { ...prevState, time: null };
         }
       });
     }, 1000);
@@ -23,7 +23,11 @@ class TimeDisplay extends Component {
   }
 
   render() {
-    return <div className="TimeDisplay">{this.state.time}</div>;
+    let display = <div className="TimeDisplay">{this.state.time}</div>;
+    if (this.state.time === null) {
+      display = <div className="timeFinished">Countdown Complete</div>;
+    }
+    return display;
   }
 }
 

@@ -3,26 +3,29 @@ import "./App.css";
 import Input from "./Input";
 import serializeForm from "form-serialize";
 import TimeDisplay from "./TimeDisplay";
+import { validateTime } from "./utils";
+import FieldValidation from "./FieldValidation";
+import FormValidation from "./FormValidation";
 
 class App extends Component {
-  handleSubmit = e => {
+  state = {
+    errorMessage: null
+  };
+  handleSubmit = (e, fieldName) => {
     e.preventDefault();
-    this.setState(serializeForm(e.target, { hash: true }));
+    console.log(e.target[fieldName].value);
   };
   render() {
     return (
       <div className="App">
-        <Input
-          label="Start Time"
-          handleSubmit={this.handleSubmit}
-          name="startTime"
-        />
-        <Input
-          label="End Time"
-          handleSubmit={this.handleSubmit}
-          name="endTime"
-        />
-        <TimeDisplay time="2" />
+        <FormValidation>
+          {({ validationErrors }) => {
+            <FieldValidation>
+              {({ isValid }) => console.log(validationErrors, "looook")}
+            </FieldValidation>;
+            <div>{validationErrors}</div>;
+          }}
+        </FormValidation>
       </div>
     );
   }
